@@ -1,0 +1,207 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ============================================================
+   Ahmad Traders — Warm Editorial Finance Design System (Tailwind CSS v4)
+   ============================================================ */
+
+:root {
+  /* Surfaces — warm cream, not white */
+  --color-paper:        #F7F3EC;   /* main app background */
+  --color-paper-2:      #FBF8F2;   /* cards, panels */
+  --color-paper-3:      #FFFDF8;   /* nested elements, inputs */
+
+  /* Ink — deep brown-black, never pure black */
+  --color-ink:          #1E1A14;   /* primary headings, KPI numbers */
+  --color-ink-2:        #3A332A;   /* body text */
+  --color-ink-3:        #6B6358;   /* secondary text, labels */
+  --color-ink-4:        #9C9384;   /* placeholders, disabled */
+
+  /* Accent — warm terracotta */
+  --color-accent:       #B5532B;   /* primary buttons, links, active nav */
+  --color-accent-hover: #8F3F1F;
+  --color-accent-soft:  #F0DDD0;   /* accent backgrounds, badges */
+
+  /* Lines */
+  --color-rule:         #E5DCCD;   /* borders, table lines */
+  --color-rule-strong:  #C9BCA6;   /* emphasized dividers */
+
+  /* Semantic — muted, never neon */
+  --color-success:      #4A6B3A;   /* completed status */
+  --color-success-soft: #E1E8D7;
+  --color-warning:      #A06A1F;   /* overdue, pending */
+  --color-warning-soft: #F2E4CC;
+  --color-danger:       #8B2E1F;   /* defaulted */
+  --color-danger-soft:  #EFD6CF;
+
+  /* Standard Shadcn variables mapped to palette */
+  --background: var(--color-paper);
+  --foreground: var(--color-ink-2);
+  --card: var(--color-paper-2);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-paper-2);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-accent);
+  --primary-foreground: var(--color-paper);
+  --secondary: var(--color-paper-3);
+  --secondary-foreground: var(--color-ink-2);
+  --muted: var(--color-paper-3);
+  --muted-foreground: var(--color-ink-3);
+  --accent: var(--color-paper-3);
+  --accent-foreground: var(--color-ink-2);
+  --destructive: var(--color-danger);
+  --destructive-foreground: var(--color-paper);
+  --border: var(--color-rule);
+  --input: var(--color-rule);
+  --ring: var(--color-accent);
+  --radius: 10px;
+}
+
+@theme {
+  /* Set fonts to local CSS variables populated by next/font/google */
+  --font-sans: var(--font-inter-tight), sans-serif;
+  --font-display: var(--font-fraunces), serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* Custom Color Tokens */
+  --color-paper: var(--color-paper);
+  --color-paper-2: var(--color-paper-2);
+  --color-paper-3: var(--color-paper-3);
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-ink-3: var(--color-ink-3);
+  --color-ink-4: var(--color-ink-4);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-rule: var(--color-rule);
+  --color-rule-strong: var(--color-rule-strong);
+  --color-success: var(--color-success);
+  --color-success-soft: var(--color-success-soft);
+  --color-warning: var(--color-warning);
+  --color-warning-soft: var(--color-warning-soft);
+  --color-danger: var(--color-danger);
+  --color-danger-soft: var(--color-danger-soft);
+}
+
+/* ============================================================
+   Global Base & Editorial Typography
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  border-color: var(--color-rule);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink-2);
+  font-family: var(--font-inter-tight), sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display), serif;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+}
+
+/* Tabular figures for aligned columns of numbers */
+.font-mono {
+  font-family: var(--font-mono), monospace;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* ============================================================
+   Print Styles (for Bilty)
+   ============================================================ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+}
+
+/* ============================================================
+   Status and List Styles
+   ============================================================ */
+
+.status-active {
+  color: var(--color-success);
+  background-color: var(--color-success-soft);
+}
+
+.status-completed {
+  color: var(--color-ink-3);
+  background-color: var(--color-rule);
+}
+
+.status-defaulted {
+  color: var(--color-danger);
+  background-color: var(--color-danger-soft);
+}
+
+.installment-paid {
+  background-color: var(--color-success-soft);
+  border-left: 3px solid var(--color-success);
+}
+
+.installment-overdue {
+  background-color: var(--color-danger-soft);
+  border-left: 3px solid var(--color-danger);
+}
+
+.installment-pending {
+  background-color: transparent;
+  border-left: 3px solid var(--color-rule);
+}
+
+/* Gradient text replacement — editorial serif style */
+.gradient-text {
+  font-family: var(--font-display), serif;
+  color: var(--color-accent);
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
+/* Zebra striping tables */
+.zebra-table tbody tr:nth-child(even) {
+  background-color: var(--color-paper-2);
+}
+.zebra-table tbody tr:nth-child(odd) {
+  background-color: var(--color-paper-3);
+}
+
+/* Animate in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.amount-positive { color: var(--color-success); }
+.amount-negative { color: var(--color-danger); }
+.amount-neutral { color: var(--color-ink-2); }
